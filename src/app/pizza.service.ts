@@ -33,6 +33,6 @@ export class PizzaService {
       checked: false,
     }));
 
-    return [];
+    return pizzaToppingsWithCheckedProperty;
   };
 }

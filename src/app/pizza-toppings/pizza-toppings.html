@@ -1,1 +1,3 @@
-<p>pizza-toppings works!</p>
+@for (topping of availablePizzaToppings(); track topping) {
+  <p>{{ topping.name }}</p>
+}
