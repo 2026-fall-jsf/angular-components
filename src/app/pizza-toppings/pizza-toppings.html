@@ -1,5 +1,5 @@
 @for (topping of availablePizzaToppings(); track topping) {
     <p>
-        {{ topping.name }}
+        {{ topping.name }} ({{ topping.price | currency }})
     </p>
 }
