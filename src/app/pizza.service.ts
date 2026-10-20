@@ -23,14 +23,16 @@ const dummyToppingsFromApi = [
 
 @Service()
 export class PizzaService {
-    getAvailablePizzaToppings(): PizzaTopping[] => {
+    getAvailablePizzaToppings = (): PizzaTopping[] => {
        
         const pizzaToppingsWithCheckedProperty = dummyToppingsFromApi.map(
-            x => (
+            (x: any) => (
+                {
                 ...x,
                 checked: false,
+                }
             )
         );
 
         return pizzaToppingsWithCheckedProperty;
-}
+};
