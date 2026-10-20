@@ -36,7 +36,7 @@ export class PizzaService {
             x => (
                 {
                     ...x,
-                    checked: false
+                    checked: false,
                 }
             )
         );
