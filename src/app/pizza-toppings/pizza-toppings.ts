@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 
 @Component({
   imports: [],
@@ -6,4 +6,12 @@ import { Component } from '@angular/core';
   styleUrl: './pizza-toppings.css',
   templateUrl: './pizza-toppings.html',
 })
-export class PizzaToppings {}
+export class PizzaToppings {
+  private readonly pizzaSvc = inject(
+    PizzaService
+  );
+
+  protected readonly avaliblePizzaToppings = signal(
+    this.pizzaSvc.getAvailablePizzaToppings()
+  );
+}
