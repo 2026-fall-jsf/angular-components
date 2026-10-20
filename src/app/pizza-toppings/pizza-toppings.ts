@@ -1,22 +1,22 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { PizzaService } from '../pizza.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
-<<<<<<< Updated upstream
-  imports: [],
-=======
-  imports: [CurrencyPipe],
->>>>>>> Stashed changes
+  imports: [
+    CurrencyPipe
+  ],
   selector: 'app-pizza-toppings',
   styleUrl: './pizza-toppings.css',
   templateUrl: './pizza-toppings.html',
 })
 export class PizzaToppings {
+
   private readonly pizzaSvc = inject(
     PizzaService
   );
 
-  protected readonly avaliblePizzaToppings = signal(
+  protected readonly avaliablePizzaToppings = signal(
     this.pizzaSvc.getAvailablePizzaToppings()
   );
 }
