@@ -40,7 +40,7 @@ export class PizzaService {
             )
         );
 
-        return [];
+        return pizzaToppingsWithCheckedProperty;
 
 
     };
