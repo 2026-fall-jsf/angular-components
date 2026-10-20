@@ -2,7 +2,11 @@ import { Component, signal, inject } from '@angular/core';
 import { PizzaService } from '../pizza.service';
 
 @Component({
+<<<<<<< Updated upstream
   imports: [],
+=======
+  imports: [CurrencyPipe],
+>>>>>>> Stashed changes
   selector: 'app-pizza-toppings',
   styleUrl: './pizza-toppings.css',
   templateUrl: './pizza-toppings.html',
