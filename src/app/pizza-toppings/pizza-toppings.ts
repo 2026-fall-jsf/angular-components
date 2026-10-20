@@ -1,5 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
-import { PizzaService } from '../pizza.service';
+import { Component, computed, inject, signal } from '@angular/core';
+import { PizzaService, PizzaTopping } from '../pizza.service';
 import { CurrencyPipe } from '@angular/common';
 
 
@@ -19,6 +19,29 @@ export class PizzaToppings {
 
   protected readonly availablePizzaToppings = signal(
     this.pizzaSvc.getAvailableToppings()
+  );
+
+
+  protected readonly total = computed(
+    () => this.availablePizzaToppings()
+      .filter(
+        (x: PizzaTopping) => x.checked 
+      )
+      .reduce(
+        (acc, x: PizzaTopping) => acc + x.price,
+        0,
+      )
+  );
+
+  protected readonly toggleTopping = (toggleTopping: PizzaTopping) => this.availablePizzaToppings.update(
+    toppings => toppings.map(
+      t => t === toggleTopping
+      ? {
+        ...t,
+        checked: !t.checked,
+      } 
+      : t 
+    )
   );
 
 }
