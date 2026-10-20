@@ -1,3 +1,5 @@
+<h2>Choose your Toppings</h2>
+
 @for (topping of availablePizzaToppings(); track topping) {
-  <p>{{ topping.name }}</p>
+  <p>{{ topping.name }} ({{ topping.price | currency }})</p>
 }

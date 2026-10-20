@@ -1,8 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { PizzaService } from '../pizza.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
-  imports: [],
+  imports: [CurrencyPipe],
   selector: 'app-pizza-toppings',
   styleUrl: './pizza-toppings.css',
   templateUrl: './pizza-toppings.html',
