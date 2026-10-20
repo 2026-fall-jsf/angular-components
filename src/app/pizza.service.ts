@@ -11,17 +11,14 @@ const dummyToppingsFromApi = [
     {
         name: "Pepperoni",
         price: 3.50,
-        checked: false,
     },
     {
         name: "Sausage",
         price: 4.25,
-        checked: false,
     },
     {
         name: "Extra Cheese",
         price: 0.99,
-        checked: true,
     },
 ];
 
@@ -44,6 +41,6 @@ export class PizzaService {
             )
         );
 
-        return [];
+        return pizzaToppingsWithCheckedProperty;
     };
 }
