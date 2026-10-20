@@ -1,4 +1,5 @@
 import { Component, signal, inject } from '@angular/core';
+import { PizzaService } from '../pizza.service';
 
 @Component({
   imports: [],
