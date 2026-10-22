@@ -1,0 +1,19 @@
+<input 
+    type="number" 
+    [value]="numberOne()"
+    (input)="updateNumberOne($event.target.value)"
+/> 
++ 
+<input 
+    type="number"
+    [value]="numberTwo()"
+    (input)="updateNumberTwo($event.target.value)"
+/> 
+<button
+    (click)="addNumbers()"
+>
+    =
+</button>
+<b>
+    {{ sum() }}
+</b>
