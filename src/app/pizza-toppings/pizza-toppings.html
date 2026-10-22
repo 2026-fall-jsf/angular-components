@@ -1,0 +1,42 @@
+<mat-card
+    appearance="outlined"
+>
+    <mat-card-header>
+        <mat-card-title>
+            <h2>
+                Choose your pizza toppings...
+            </h2>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <button
+            (click)="checkAll()"
+            matButton="filled"
+        >
+            All
+        </button>
+        &nbsp;
+        <button
+            (click)="uncheckAll()"
+            matButton="elevated"
+        >
+            None
+        </button>
+        @for (topping of availablePizzaToppings(); track topping) {
+            <p>
+                <mat-checkbox
+                    [checked]="topping.checked"
+                    (change)="toggleTopping(topping)"
+                >
+                    {{ topping.name }} ({{ topping.price | currency }})
+                </mat-checkbox>
+            </p>
+        }
+
+        <h3>
+            Total: {{ total() | currency }}
+        </h3>
+    </mat-card-content>
+</mat-card>
+
+
