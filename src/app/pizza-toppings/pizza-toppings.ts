@@ -1,11 +1,13 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { PizzaService, PizzaTopping } from '../pizza.service';
 import { CurrencyPipe } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   imports: [
-    CurrencyPipe
+    CurrencyPipe,
+    MatButtonModule
   ],
   selector: 'app-pizza-toppings',
   styleUrl: './pizza-toppings.css',
