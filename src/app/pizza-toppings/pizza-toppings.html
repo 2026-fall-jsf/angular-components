@@ -1,4 +1,7 @@
 <h2>Choose your Toppings</h2>
+<button (click)="checkAll()">All</button>
+&nbsp;
+<button (click)="uncheckAll()">None</button>
 
 @for (topping of availablePizzaToppings(); track topping) {
   <p>
