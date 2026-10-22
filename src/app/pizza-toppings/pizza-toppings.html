@@ -2,18 +2,20 @@
     Choose your pizza toppings...
 </h2>
 
+<button
+    (click)="checkAll()"
+>
+    All
+</button>
+<button
+    (click)="uncheckAll()"
+>
+    None
+</button>
+
 @for (topping of availablePizzaToppings(); track topping) {
     <p>
-<<<<<<< Updated upstream
-        {{ topping.name }}
-=======
         <label>
-            <input 
-                type="checkbox"
-                [checked]="topping.checked"
-                (change)="toggleTopping(topping)" 
-            />
-           <label>
             <input 
                 type="checkbox"
                 [checked]="topping.checked"
@@ -21,7 +23,9 @@
             />
             {{ topping.name }} ({{ topping.price | currency }})
         </label>
-        </label>
->>>>>>> Stashed changes
     </p>
 }
+
+<h3>
+    Total: {{ total() | currency }}
+</h3>
