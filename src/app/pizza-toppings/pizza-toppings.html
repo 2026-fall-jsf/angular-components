@@ -16,14 +16,12 @@
 </button>
 @for (topping of availablePizzaToppings(); track topping) {
     <p>
-        <label>
-            <input 
-                type="checkbox"
-                [checked]="topping.checked"
-                (change)="toggleTopping(topping)" 
-            />
+        <mat-checkbox
+            [checked]="topping.checked"
+            (change)="toggleTopping(topping)"
+        >
             {{ topping.name }} ({{ topping.price | currency }})
-        </label>
+        </mat-checkbox>
     </p>
 }
 
