@@ -4,25 +4,26 @@
 
 <button
     (click)="checkAll()"
+    matButton = "filled"
 >
     All
 </button>
 <button
     (click)="uncheckAll()"
+    matButton = "outlined"
 >
     None
 </button>
 
 @for (topping of availablePizzaToppings(); track topping) {
     <p>
-        <label>
-            <input 
+        <mat-checkbox
                 type="checkbox"
                 [checked]="topping.checked"
                 (change)="toggleTopping(topping)" 
-            />
+                >
             {{ topping.name }} ({{ topping.price | currency }})
-        </label>
+        </mat-checkbox>
     </p>
 }
 
