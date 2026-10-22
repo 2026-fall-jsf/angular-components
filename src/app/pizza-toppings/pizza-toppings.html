@@ -1,3 +1,16 @@
+<h2>
+    Pick your pizza toppings...
+</h2>
+<button
+    (click)="checkAll()"
+>
+    All
+</button>
+<button
+    (click)="uncheckAll()"
+>
+    None
+</button>
 @for (topping of availablePizzaToppings(); track topping) {
     <p>
         <label>
