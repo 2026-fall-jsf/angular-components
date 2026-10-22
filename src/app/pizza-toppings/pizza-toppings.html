@@ -1,29 +1,34 @@
-<h2>
-    Pick your pizza toppings...
-</h2>
-<button
-    (click)="checkAll()"
->
-    All
-</button>
-<button
-    (click)="uncheckAll()"
->
-    None
-</button>
-@for (topping of availablePizzaToppings(); track topping) {
-    <p>
-        <label>
-            <input
-                type="checkbox"
+<body>
+   <h2>
+        Pick your pizza toppings...
+    </h2>
+    <div class="example-button-row">
+        <button
+            matButton="filled"
+            (click)="checkAll()"
+        >
+            All
+        </button>
+        <button
+            matButton="outlined"
+            (click)="uncheckAll()"
+        >
+            None
+        </button>
+    </div>
+
+    @for (topping of availablePizzaToppings(); track topping) {
+        <p>
+            <mat-checkbox
                 [checked] = "topping.checked"
                 (change)="toggleTopping(topping)"
             >
-            {{ topping.name }} ({{ topping.price | currency }})
-        </label>
-    </p>
-}
+                {{ topping.name }} ({{ topping.price | currency }})
+            </mat-checkbox>
+        </p>
+    }
 
-<h3>
-    Total: {{ total() | currency }}
-</h3>
+    <h3>
+        Total: {{ total() | currency }}
+    </h3>
+</body>
