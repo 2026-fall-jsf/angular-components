@@ -44,4 +44,28 @@ export class PizzaToppings {
     )
   );
 
+
+  protected readonly checkAll = () => this.availablePizzaToppings.update(
+    foo => foo.map(
+      x => (
+        {
+          ...x,
+          checked: true,
+        }
+      ) 
+    )
+  );
+
+
+  protected readonly unCheckAll = () => this.availablePizzaToppings.update(
+    foo => foo.map(
+      x => (
+        {
+          ...x,
+          checked: false,
+        }
+      ) 
+    )
+  );
+
 }
