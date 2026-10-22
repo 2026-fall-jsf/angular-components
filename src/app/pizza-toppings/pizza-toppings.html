@@ -36,3 +36,17 @@
         </h3>        
     </mat-card-content>    
 </mat-card>
+
+
+<section>
+  <h3>How many pizzas would you like</h3>
+  <mat-button-toggle-group
+    name="favoriteColor"
+    aria-label="Favorite Color"
+    (click)="printPizzas()"
+  >
+    <mat-button-toggle value="One">One</mat-button-toggle>
+    <mat-button-toggle value="Two">Two</mat-button-toggle>
+    <mat-button-toggle value="Three">Three</mat-button-toggle>
+  </mat-button-toggle-group>
+</section>
