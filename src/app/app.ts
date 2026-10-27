@@ -1,11 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { PizzaToppings } from './pizza-toppings/pizza-toppings';
+import { MlyCrustSelection } from './mly-crust-selection/mly-crust-selection';
 import { EgaritaAddition } from './egarita-addition/egarita-addition';
 import { TsteeleAddition } from './tsteele-addition/tsteele-addition';
 
 @Component({
   imports: [
     PizzaToppings,
+    MlyCrustSelection,
     EgaritaAddition,
     TsteeleAddition,
   ],
