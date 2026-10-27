@@ -11,7 +11,7 @@ import { MatCardModule } from '@angular/material/card';
     CurrencyPipe,
     MatButtonModule,
     MatCheckboxModule,
-    MatCardModule, 
+    MatCardModule,
   ],
   selector: 'app-pizza-toppings',
   styleUrl: './pizza-toppings.css',
@@ -70,5 +70,4 @@ export class PizzaToppings {
       )
     )
   );  
-
 }
