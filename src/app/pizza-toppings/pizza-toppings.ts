@@ -17,7 +17,7 @@ import { EleeDatePicker } from '../elee-date-picker/elee-date-picker';
     MatButtonModule,
     MatCheckboxModule,
     MatCardModule,
-    EleeDatePicker
+    EleeDatePicker,
   ],
 })
 export class PizzaToppings {
