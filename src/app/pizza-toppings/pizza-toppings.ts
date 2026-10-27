@@ -5,7 +5,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 
-
 @Component({
   imports: [
     CurrencyPipe,
