@@ -1,0 +1,33 @@
+mat-card {
+    margin-top: 20px;
+}
+
+.roller {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding-top: 16px;
+}
+
+.dice {
+    display: flex;
+    gap: 8px;
+}
+
+.die {
+    display: inline-block;
+    font-size: 56px;
+    line-height: 1;
+    animation: tumble 0.5s ease-out;
+}
+
+@keyframes tumble {
+    from {
+        transform: rotate(-360deg) scale(0.3);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(0) scale(1);
+        opacity: 1;
+    }
+}

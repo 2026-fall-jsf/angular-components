@@ -1,0 +1,27 @@
+<mat-card
+    appearance="outlined"
+>
+    <mat-card-header>
+        <mat-card-title>
+            Tom's D6s Component
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="roller">
+            <button
+                matButton="outlined"
+                (click)="roll()"
+            >
+                Roll {{ numberOfDice() }} d6{{ numberOfDice() === 1 ? '' : 's' }}
+            </button>
+            <div class="dice">
+                @for (d of dice(); track d.id) {
+                    <span class="die">{{ faces[d.face] }}</span>
+                }
+            </div>
+            @if (dice().length > 0) {
+                <span>Total: {{ total() }}</span>
+            }
+        </div>
+    </mat-card-content>
+</mat-card>
