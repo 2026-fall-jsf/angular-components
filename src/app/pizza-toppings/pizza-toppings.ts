@@ -6,8 +6,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
 import { EleeDatePicker } from '../elee-date-picker/elee-date-picker';
 
-
-
 @Component({
   selector: 'app-pizza-toppings',
   templateUrl: './pizza-toppings.html',
@@ -20,6 +18,7 @@ import { EleeDatePicker } from '../elee-date-picker/elee-date-picker';
     EleeDatePicker,
   ],
 })
+
 export class PizzaToppings {
   private readonly pizzaSvc = inject(PizzaService);
 
@@ -27,7 +26,8 @@ export class PizzaToppings {
     this.pizzaSvc.getAvailablePizzaToppings()
   );
 
-  protected readonly total = computed(() =>
+  protected readonly total = computed(
+    () =>
     this.availablePizzaToppings()
       .filter((x: PizzaTopping) => x.checked)
       .reduce((acc, x: PizzaTopping) => acc + x.price, 0)
@@ -47,17 +47,26 @@ export class PizzaToppings {
 
   protected readonly checkAll = () =>
     this.availablePizzaToppings.update((foo) =>
-      foo.map((x) => ({
+      foo.map(
+        (x) => (
+          {
         ...x,
+
         checked: true,
-      }))
+      }
+    )
+  )
     );
 
   protected readonly uncheckAll = () =>
     this.availablePizzaToppings.update((foo) =>
-      foo.map((x) => ({
+      foo.map(
+        (x) => (
+        {
         ...x,
         checked: false,
-      }))
+      }
+    )
+  )
     );
 }
