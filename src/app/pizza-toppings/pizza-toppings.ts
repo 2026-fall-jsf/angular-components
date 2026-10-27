@@ -4,24 +4,20 @@ import { CurrencyPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { provideNativeDateAdapter } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { EleeDatePicker } from '../elee-date-picker/elee-date-picker';
+
+
 
 @Component({
   selector: 'app-pizza-toppings',
   templateUrl: './pizza-toppings.html',
   styleUrl: './pizza-toppings.css',
-  providers: [provideNativeDateAdapter()],
   imports: [
     CurrencyPipe,
     MatButtonModule,
     MatCheckboxModule,
     MatCardModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
+    EleeDatePicker
   ],
 })
 export class PizzaToppings {
