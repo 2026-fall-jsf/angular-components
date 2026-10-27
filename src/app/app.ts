@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { PizzaToppings } from './pizza-toppings/pizza-toppings';
+import { EleeDatePicker } from './elee-date-picker/elee-date-picker';
 import { MlyCrustSelection } from './mly-crust-selection/mly-crust-selection';
 import { EgaritaAddition } from './egarita-addition/egarita-addition';
 import { TsteeleAddition } from './tsteele-addition/tsteele-addition';
@@ -7,6 +8,7 @@ import { TsteeleAddition } from './tsteele-addition/tsteele-addition';
 @Component({
   imports: [
     PizzaToppings,
+    EleeDatePicker,
     MlyCrustSelection,
     EgaritaAddition,
     TsteeleAddition,
