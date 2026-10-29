@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @Component({
-  imports: [CurrencyPipe,
+  imports: [
     MatButtonModule,
     MatCheckboxModule,
     MatCardModule,
