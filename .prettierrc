@@ -1,6 +1,7 @@
 {
-  "printWidth": 100,
-  "singleQuote": true,
+  "printWidth": 30,
+  "singleQuote": false,
+  "trailingComma": "all",
   "overrides": [
     {
       "files": "*.html",
