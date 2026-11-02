@@ -12,15 +12,18 @@
                 Enter your total to add the tax
             </mat-label>
             <input 
+                type="number"
                 matInput
                 [value]="orderTotal()"
+                (input)="updateOrderTotal($event.target.value)"
             />
         </mat-form-field>
         &nbsp;
         <button
             matButton="outlined"
+            (click)="add()"
         >
-            Add up tax
+            Add tax (5%)
         </button>
         &nbsp;
         {{ taxSum() | currency }}

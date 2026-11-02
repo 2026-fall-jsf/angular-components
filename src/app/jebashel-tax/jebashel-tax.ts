@@ -23,4 +23,8 @@ import { MatInputModule } from '@angular/material/input';
 export class JebashelTax {
   protected readonly orderTotal = signal(4.75);
   protected readonly taxSum = signal(4.98);
+
+  protected readonly updateOrderTotal = (num: string) => this.orderTotal.set(Number(num));
+
+  protected readonly add = () => this.taxSum.set(this.orderTotal() * 1.05);
 }
