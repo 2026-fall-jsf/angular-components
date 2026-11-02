@@ -12,8 +12,9 @@
                 Enter your total to add the tax
             </mat-label>
             <input 
-            matInput
-            value="3.00"/>
+                matInput
+                [value]="orderTotal()"
+            />
         </mat-form-field>
         &nbsp;
         <button
@@ -21,6 +22,7 @@
         >
             Add up tax
         </button>
-        3.15
+        &nbsp;
+        {{ taxSum() | currency }}
     </mat-card-content>
 </mat-card>

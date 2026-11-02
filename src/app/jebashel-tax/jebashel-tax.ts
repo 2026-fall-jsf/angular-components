@@ -21,5 +21,6 @@ import { MatInputModule } from '@angular/material/input';
   templateUrl: './jebashel-tax.html',
 })
 export class JebashelTax {
-
+  protected readonly orderTotal = signal(4.75);
+  protected readonly taxSum = signal(4.98);
 }
