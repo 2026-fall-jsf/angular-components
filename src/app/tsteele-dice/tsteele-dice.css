@@ -1,0 +1,78 @@
+:host {
+  display: block;
+}
+
+mat-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.piece {
+  position: absolute;
+  top: -10px;
+  width: 8px;
+  height: 14px;
+  opacity: 0;
+  animation-name: confetti-fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift, 0), 320px) rotate(720deg);
+  }
+}
+
+.die.rolling {
+  animation: tumble 0.25s linear infinite;
+}
+
+@keyframes tumble {
+  from {
+    transform: rotate(-12deg) scale(1.05);
+  }
+  50% {
+    transform: rotate(12deg) scale(0.95);
+  }
+  to {
+    transform: rotate(-12deg) scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .die.rolling,
+  .piece {
+    animation: none;
+  }
+}
+
+.roller {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.die {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 6rem;
+  height: 6rem;
+  font-size: 5rem;
+  line-height: 1;
+}

@@ -7,6 +7,7 @@ import { EgaritaAddition } from './egarita-addition/egarita-addition';
 import { TsteeleAddition } from './tsteele-addition/tsteele-addition';
 import { JebashelTax } from './jebashel-tax/jebashel-tax';
 import { TsteeleMultiplication } from './tsteele-multiplication/tsteele-multiplication';
+import { TsteeleDice } from './tsteele-dice/tsteele-dice';
 
 @Component({
   imports: [
@@ -18,6 +19,7 @@ import { TsteeleMultiplication } from './tsteele-multiplication/tsteele-multipli
     TsteeleAddition,
     JebashelTax,
     TsteeleMultiplication,
+    TsteeleDice,
   ],
   selector: 'app-root',
   styleUrl: './app.css',
