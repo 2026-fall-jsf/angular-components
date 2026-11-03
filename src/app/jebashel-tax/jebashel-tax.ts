@@ -4,6 +4,7 @@ import { MatCard, MatCardContent, MatCardTitle, MatCardHeader } from '@angular/m
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { PizzaService } from '../pizza.service';
 
 @Component({
   imports: [
@@ -21,10 +22,15 @@ import { MatInputModule } from '@angular/material/input';
   templateUrl: './jebashel-tax.html',
 })
 export class JebashelTax {
-  protected readonly orderTotal = signal(4.75);
+  
+  private readonly pizzaSvc = inject(
+    PizzaService
+  );
+
+  protected readonly orderTotal = computed(() => this.pizzaSvc.toppingTotal());
   protected readonly taxSum = signal(4.98);
 
-  protected readonly updateOrderTotal = (num: string) => this.orderTotal.set(Number(num));
+  // protected readonly updateOrderTotal = (num: string) => this.orderTotal.set(Number(num));
 
-  protected readonly add = () => this.taxSum.set(this.orderTotal() * 1.05);
+  protected readonly add = () => this.taxSum.set(this.pizzaSvc.toppingTotal() * 1.05);
 }

@@ -1,4 +1,4 @@
-import { Service } from '@angular/core';
+import { Service, signal } from '@angular/core';
 
 export type PizzaTopping = {
     name: string;
@@ -42,4 +42,6 @@ export class PizzaService {
 
         return pizzaToppingsWithCheckedProperty;
     };
+
+    toppingTotal = signal(0);
 }

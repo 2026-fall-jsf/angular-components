@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, effect } from '@angular/core';
 import { PizzaService, PizzaTopping } from '../pizza.service';
 import { CurrencyPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +17,13 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './pizza-toppings.html',
 })
 export class PizzaToppings {
+
+  constructor() {
+    effect(
+      () => this.pizzaSvc.toppingTotal.set(this.total())
+    );    
+  }
+
 
   private readonly pizzaSvc = inject(
     PizzaService
