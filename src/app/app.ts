@@ -5,7 +5,7 @@ import { EleeDatePicker } from './elee-date-picker/elee-date-picker';
 import { MlyCrustSelection } from './mly-crust-selection/mly-crust-selection';
 import { EgaritaAddition } from './egarita-addition/egarita-addition';
 import { TsteeleAddition } from './tsteele-addition/tsteele-addition';
-
+import { MlyMultiplication } from './mly-multiplication/mly-multiplication';
 @Component({
   imports: [
     PizzaToppings,
@@ -14,6 +14,7 @@ import { TsteeleAddition } from './tsteele-addition/tsteele-addition';
     MlyCrustSelection,
     EgaritaAddition,
     TsteeleAddition,
+    MlyMultiplication,
   ],
   selector: 'app-root',
   styleUrl: './app.css',
