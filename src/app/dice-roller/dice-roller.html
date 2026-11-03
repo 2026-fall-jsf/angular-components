@@ -11,11 +11,11 @@
         <br />
         <div class="roller">
             <button
-                matButton="outlined"
+                matButton="filled"
                 [disabled]="rolling()"
                 (click)="roll()"
             >
-                Roll d{{ sides() }}
+                {{ buttonLabel() }}
             </button>
             <div
                 class="result"
@@ -55,5 +55,7 @@
         ></span>
     }
 </mat-card>
+
+
 
 

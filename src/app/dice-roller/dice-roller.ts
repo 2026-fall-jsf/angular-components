@@ -41,6 +41,12 @@ export class DiceRoller {
 
   protected readonly confetti = signal<{ left: number; delay: number; drift: number; color: string }[]>([]);
 
+  protected readonly buttonLabel = computed(() =>
+    this.rolling() ? 'Rolling...'
+      : this.result() === null ? `Roll d${this.sides()}`
+      : `Rolled ${this.result()} - roll again`
+  );
+
   private readonly randomRoll = () => Math.floor(Math.random() * this.sides()) + 1;
 
   protected readonly roll = () => {
@@ -68,5 +74,6 @@ export class DiceRoller {
   };
 
 }
+
 
 
