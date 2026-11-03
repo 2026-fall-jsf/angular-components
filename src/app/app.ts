@@ -4,7 +4,7 @@ import { EleeDatePicker } from './elee-date-picker/elee-date-picker';
 import { MlyCrustSelection } from './mly-crust-selection/mly-crust-selection';
 import { EgaritaAddition } from './egarita-addition/egarita-addition';
 import { TsteeleAddition } from './tsteele-addition/tsteele-addition';
-import { KdemottPokemonStatCalculation } from './kdemott-pokemon-stat-calculation/kdemott-pokemon-stat-calculation';
+import { KdemottPokemonStatsCalculation } from './kdemott-pokemon-stats-calculation/kdemott-pokemon-stats-calculation';
 
 @Component({
   imports: [
@@ -13,8 +13,8 @@ import { KdemottPokemonStatCalculation } from './kdemott-pokemon-stat-calculatio
     MlyCrustSelection,
     EgaritaAddition,
     TsteeleAddition,
-    KdemottPokemonStatCalculation,
-  ],
+    KdemottPokemonStatsCalculation,
+],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

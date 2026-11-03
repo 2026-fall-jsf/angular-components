@@ -1,0 +1,44 @@
+<mat-card
+    appearance="outlined"
+>
+    <mat-card-header>
+        <mat-card-title>
+            Pok&eacute;mon Stats Calculation
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <br>
+        <mat-form-field>
+            <mat-label>
+                Base HP
+            </mat-label>
+            <input 
+                type="number"
+                matInput 
+                [value]="baseHp()"
+                (input)="updateBaseHp($event.target.value)" 
+            />
+        </mat-form-field>
+        ?
+        <mat-form-field>
+            <mat-label>
+                IV
+            </mat-label>
+            <input 
+                type="number"
+                matInput 
+                [value]="hpIv()"
+                (input)="updateHpIv($event.target.value)" 
+            />
+        </mat-form-field>
+        &nbsp;
+        <button
+            matButton="outlined"
+            (click)="calculateHpStat()"
+        >
+            =
+        </button>
+        &nbsp;
+        {{ finalHp() }}
+    </mat-card-content>
+</mat-card>

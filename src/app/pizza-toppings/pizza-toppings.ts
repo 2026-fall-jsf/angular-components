@@ -4,7 +4,6 @@ import { CurrencyPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
-import { EleeDatePicker } from '../elee-date-picker/elee-date-picker';
 
 @Component({
   selector: 'app-pizza-toppings',
@@ -15,7 +14,6 @@ import { EleeDatePicker } from '../elee-date-picker/elee-date-picker';
     MatButtonModule,
     MatCheckboxModule,
     MatCardModule,
-    EleeDatePicker,
   ],
 })
 
