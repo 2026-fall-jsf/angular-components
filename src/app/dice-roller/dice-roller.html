@@ -1,0 +1,59 @@
+<mat-card
+    class="dice-card"
+    appearance="outlined"
+>
+    <mat-card-header>
+        <mat-card-title>
+            {{ title() }}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <br />
+        <div class="roller">
+            <button
+                matButton="outlined"
+                [disabled]="rolling()"
+                (click)="roll()"
+            >
+                Roll d{{ sides() }}
+            </button>
+            <div
+                class="result"
+                aria-live="polite"
+            >
+                @if (isD6()) {
+                    <div
+                        class="die"
+                        [class.rolling]="rolling()"
+                        [attr.aria-label]="rolling() ? 'Rolling' : (result() === null ? 'Die, not rolled yet' : 'Rolled ' + result())"
+                        role="img"
+                    >
+                        @for (cell of cells; track cell) {
+                            <span
+                                class="pip"
+                                [class.on]="hasPip(cell)"
+                            ></span>
+                        }
+                    </div>
+                } @else {
+                    <div
+                        class="die number"
+                        [class.rolling]="rolling()"
+                    >{{ result() ?? '' }}</div>
+                }
+            </div>
+        </div>
+    </mat-card-content>
+    @for (piece of confetti(); track $index) {
+        <span
+            class="confetti"
+            aria-hidden="true"
+            [style.left.%]="piece.left"
+            [style.background]="piece.color"
+            [style.animation-delay.s]="piece.delay"
+            [style.--drift.px]="piece.drift"
+        ></span>
+    }
+</mat-card>
+
+
