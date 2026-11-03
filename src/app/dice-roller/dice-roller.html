@@ -1,0 +1,135 @@
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>
+            Dice Roller
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <br />
+        <mat-form-field>
+            <mat-label>Mode</mat-label>
+            <mat-select
+                [value]="mode()"
+                (selectionChange)="setMode($event.value)"
+            >
+                <mat-option value="custom">Custom dice</mat-option>
+                <mat-option value="mockery">Vicious Mockery (D&amp;D)</mat-option>
+            </mat-select>
+        </mat-form-field>
+        &nbsp;
+        @if (isMockery()) {
+            <mat-form-field>
+                <mat-label>Caster level</mat-label>
+                <mat-select
+                    [value]="level()"
+                    (selectionChange)="setLevel($event.value)"
+                >
+                    @for (option of levelOptions; track option) {
+                        <mat-option [value]="option">{{ option }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field>
+                <mat-label>Rules</mat-label>
+                <mat-select
+                    [value]="edition()"
+                    (selectionChange)="setEdition($event.value)"
+                >
+                    <mat-option value="2014">2014 (d4)</mat-option>
+                    <mat-option value="2024">2024 (d6)</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <p class="hint">
+                Vicious Mockery: {{ effectiveCount() }}d{{ effectiveSides() }} psychic damage.
+                Target makes a Wisdom save; on a failure it takes the damage and has
+                disadvantage on its next attack roll.
+            </p>
+        } @else {
+            <mat-form-field>
+                <mat-label>Number of dice</mat-label>
+                <mat-select
+                    [value]="count()"
+                    (selectionChange)="setCount($event.value)"
+                >
+                    @for (option of countOptions; track option) {
+                        <mat-option [value]="option">{{ option }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field>
+                <mat-label>Sides</mat-label>
+                <mat-select
+                    [value]="sides()"
+                    (selectionChange)="setSides($event.value)"
+                >
+                    @for (option of sidesOptions; track option) {
+                        <mat-option [value]="option">d{{ option }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        }
+        &nbsp;
+        <button
+            matButton="filled"
+            [disabled]="rolling()"
+            (click)="roll()"
+        >
+            {{ isMockery() ? 'Cast Vicious Mockery' : 'Roll' }}
+        </button>
+        &nbsp;
+        <button matButton="outlined" (click)="clearHistory()">
+            Clear
+        </button>
+
+        <div class="dice">
+            @for (die of dice(); track $index) {
+                <div class="scene" (click)="roll()">
+                    <div
+                        class="cube"
+                        [style.transform]="die.transform"
+                        [style.transition-delay]="die.delay"
+                    >
+                        @for (face of die.faces; track $index) {
+                            <div class="face f{{ $index + 1 }}">
+                                @if (isD6()) {
+                                    <div class="pips">
+                                        @for (cell of cells; track cell) {
+                                            <span class="pip" [class.on]="pipOn(face, cell)"></span>
+                                        }
+                                    </div>
+                                } @else {
+                                    {{ face }}
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (rolls().length > 0 && !rolling()) {
+            @if (isMockery()) {
+                <p class="insult">&ldquo;{{ insult() }}&rdquo;</p>
+                <p class="total">
+                    Damage taken: {{ rolls().join(' + ') }} = {{ total() }} psychic
+                </p>
+                <p class="hint">
+                    Total damage taken by the target so far: {{ damageTaken() }}
+                </p>
+            } @else {
+                <p class="total">Total: {{ total() }}</p>
+            }
+        }
+
+        @if (history().length > 0) {
+            <h4>History</h4>
+            <ul>
+                @for (entry of history(); track $index) {
+                    <li>{{ entry }}</li>
+                }
+            </ul>
+        }
+    </mat-card-content>
+</mat-card>
