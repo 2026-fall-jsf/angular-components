@@ -1,0 +1,127 @@
+﻿.die {
+  --size: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.scene {
+  width: var(--size);
+  height: var(--size);
+  margin: 2rem 0 1rem;
+  perspective: 600px;
+}
+
+.tilt {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(-25deg) rotateY(-30deg);
+}
+
+.cube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition-property: transform;
+  transition-timing-function: linear;
+}
+
+.cube.settling {
+  transition-timing-function: cubic-bezier(0.15, 0.7, 0.2, 1);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid #c8c8c8;
+  background: linear-gradient(145deg, #ffffff, #e4e4e4);
+  backface-visibility: hidden;
+}
+
+.face-1 {
+  transform: rotateY(0deg) translateZ(calc(var(--size) / 2));
+}
+.face-2 {
+  transform: rotateY(90deg) translateZ(calc(var(--size) / 2));
+}
+.face-3 {
+  transform: rotateX(90deg) translateZ(calc(var(--size) / 2));
+}
+.face-4 {
+  transform: rotateX(-90deg) translateZ(calc(var(--size) / 2));
+}
+.face-5 {
+  transform: rotateY(-90deg) translateZ(calc(var(--size) / 2));
+}
+.face-6 {
+  transform: rotateY(180deg) translateZ(calc(var(--size) / 2));
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pip {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #555, #111);
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.face-1 .pip {
+  background: radial-gradient(circle at 35% 35%, #ff6b6b, #b71c1c);
+}
+
+.value {
+  font-size: 1.25rem;
+}
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 14px;
+  opacity: 0;
+  animation-name: fall;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fall {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift), 105vh) rotate(720deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cube {
+    transition-duration: 0ms !important;
+  }
+  .confetti {
+    display: none;
+  }
+}

@@ -4,6 +4,7 @@ import { LeaveTip } from './leave-tip/leave-tip';
 import { EleeDatePicker } from './elee-date-picker/elee-date-picker';
 import { MlyCrustSelection } from './mly-crust-selection/mly-crust-selection';
 import { EgaritaAddition } from './egarita-addition/egarita-addition';
+import { EgaritaDiceRoller } from './egarita-dice-roller/egarita-dice-roller';
 import { TsteeleAddition } from './tsteele-addition/tsteele-addition';
 import { TsteeleMultiplication } from './tsteele-multiplication/tsteele-multiplication';
 
@@ -14,6 +15,7 @@ import { TsteeleMultiplication } from './tsteele-multiplication/tsteele-multipli
     EleeDatePicker,
     MlyCrustSelection,
     EgaritaAddition,
+    EgaritaDiceRoller,
     TsteeleAddition,
     TsteeleMultiplication,
   ],
