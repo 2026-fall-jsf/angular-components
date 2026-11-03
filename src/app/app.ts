@@ -6,6 +6,7 @@ import { MlyCrustSelection } from './mly-crust-selection/mly-crust-selection';
 import { EgaritaAddition } from './egarita-addition/egarita-addition';
 import { TsteeleAddition } from './tsteele-addition/tsteele-addition';
 import { TsteeleMultiplication } from './tsteele-multiplication/tsteele-multiplication';
+import { TsteeleDieRoll } from './tsteele-die-roll/tsteele-die-roll';
 
 @Component({
   imports: [
@@ -16,6 +17,7 @@ import { TsteeleMultiplication } from './tsteele-multiplication/tsteele-multipli
     EgaritaAddition,
     TsteeleAddition,
     TsteeleMultiplication,
+    TsteeleDieRoll,
   ],
   selector: 'app-root',
   styleUrl: './app.css',

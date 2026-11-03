@@ -1,0 +1,16 @@
+.die {
+    display: inline-block;
+    font-size: 3rem;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.spinning {
+    animation: spin 2s ease-out;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(1440deg);
+    }
+}
