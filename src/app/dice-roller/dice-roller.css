@@ -1,0 +1,59 @@
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.result {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 1rem 0;
+}
+
+.die.rolling {
+  display: inline-block;
+  animation: shake 0.15s infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
+
+.confetti {
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+  width: 8px;
+  height: 12px;
+  opacity: 0;
+  pointer-events: none;
+  animation: burst 1.4s ease-out forwards;
+}
+
+@keyframes burst {
+  0% { opacity: 1; transform: translate(0, 0) rotate(0); }
+  70% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), calc(var(--y) + 200px)) rotate(var(--rot));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .die.rolling,
+  .confetti {
+    animation: none;
+  }
+}
+
+.die {
+  font-size: 6rem;
+  line-height: 1;
+}
+
+.label {
+  font-size: 1.25rem;
+}
