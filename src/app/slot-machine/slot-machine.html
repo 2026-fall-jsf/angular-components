@@ -5,6 +5,10 @@
         </mat-card-title>
     </mat-card-header>
     <mat-card-content>
+        <p class="balance">
+            Balance: <strong>${{ balance().toLocaleString() }}</strong>
+            <span class="cost">(${{ spinCost }} per spin)</span>
+        </p>
         <div class="machine">
             <div class="reels" aria-hidden="true">
                 @for (symbol of reels(); track $index) {
@@ -31,7 +35,7 @@
         </div>
         <button
             matButton="outlined"
-            [disabled]="isSpinning()"
+            [disabled]="isSpinning() || !canSpin()"
             (click)="spin()"
         >
             Spin

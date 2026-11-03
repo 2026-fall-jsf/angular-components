@@ -1,6 +1,8 @@
-import { Component, DestroyRef, inject, input, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, input, linkedSignal, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+
+type Tier = 'mega' | 'large' | 'jackpot' | 'none';
 
 interface ConfettiPiece {
   x: number;
@@ -22,6 +24,20 @@ export class SlotMachine {
   private static readonly symbols = ['🍒', '🍋', '🔔', '⭐', '🍇', '7️⃣'];
   // Delay (ms) at which each reel stops; later reels spin longer
   private static readonly stopDelays = [250, 350, 480];
+
+  readonly startingBalance = input(100000);
+  protected readonly spinCost = 25;
+
+  // Checked from rarest to most common; chances are independent per spin
+  private static readonly tiers = [
+    { tier: 'mega' as const, chance: 0.005, payout: 10_000_000, name: 'MEGA JACKPOT', symbol: '7️⃣' },
+    { tier: 'large' as const, chance: 0.05, payout: 2_500, name: 'Large Jackpot', symbol: '⭐' },
+    { tier: 'jackpot' as const, chance: 0.10, payout: 1_000, name: 'Jackpot', symbol: null },
+  ];
+
+  // Fake money
+  protected readonly balance = linkedSignal(() => this.startingBalance());
+  protected readonly canSpin = computed(() => this.balance() >= this.spinCost);
 
   protected readonly reels = signal<string[]>(['🍒', '🍋', '🔔']);
   protected readonly spinning = signal<boolean[]>([false, false, false]);
@@ -53,19 +69,45 @@ export class SlotMachine {
     this.spinning.update((s) => s.map((v, i) => (i === index ? value : v)));
   }
 
+  // Decide the outcome up front so the odds are exactly as specified
+  private pickOutcome(): { tier: Tier; finals: string[] } {
+    const roll = Math.random();
+    let threshold = 0;
+    for (const t of SlotMachine.tiers) {
+      threshold += t.chance;
+      if (roll < threshold) {
+        const symbol = t.symbol ?? this.randomCommonSymbol();
+        return { tier: t.tier, finals: [symbol, symbol, symbol] };
+      }
+    }
+    // No jackpot: any three symbols that are not all the same
+    let finals: string[];
+    do {
+      finals = [this.randomSymbol(), this.randomSymbol(), this.randomSymbol()];
+    } while (new Set(finals).size === 1);
+    return { tier: 'none', finals };
+  }
+
+  // Symbols not reserved for the large / mega jackpots
+  private randomCommonSymbol() {
+    const common = SlotMachine.symbols.filter((s) => s !== '⭐' && s !== '7️⃣');
+    return common[Math.floor(Math.random() * common.length)];
+  }
+
   protected readonly spin = () => {
-    if (this.isSpinning()) return;
+    if (this.isSpinning() || !this.canSpin()) return;
 
     clearTimeout(this.confettiTimer);
     this.confetti.set([]);
     this.message.set('Spinning...');
+    this.balance.update((b) => b - this.spinCost);
 
-    const finals = [this.randomSymbol(), this.randomSymbol(), this.randomSymbol()];
+    const { tier, finals } = this.pickOutcome();
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) {
       this.reels.set(finals);
-      this.finish(finals);
+      this.finish(finals, tier);
       return;
     }
 
@@ -79,7 +121,7 @@ export class SlotMachine {
         if (delay > SlotMachine.stopDelays[i]) {
           this.setReel(i, final);
           this.setSpinning(i, false);
-          if (++stopped === finals.length) this.finish(finals);
+          if (++stopped === finals.length) this.finish(finals, tier);
           return;
         }
         this.setReel(i, this.randomSymbol());
@@ -90,22 +132,24 @@ export class SlotMachine {
     });
   };
 
-  private finish(finals: string[]) {
+  private finish(finals: string[], tier: Tier) {
     const unique = new Set(finals).size;
-    if (unique === 1) {
-      this.message.set('Jackpot!');
-      this.launchConfetti();
+    const win = SlotMachine.tiers.find((t) => t.tier === tier);
+    if (win) {
+      this.balance.update((b) => b + win.payout);
+      this.message.set(`${win.name}! You won $${win.payout.toLocaleString()}`);
+      this.launchConfetti(tier === 'mega' ? 150 : tier === 'large' ? 80 : 40);
     } else if (unique === 2) {
       this.message.set('Two of a kind!');
     } else {
-      this.message.set('No luck, try again!');
+      this.message.set(this.canSpin() ? 'No luck, try again!' : 'Out of money!');
     }
   }
 
-  private launchConfetti() {
+  private launchConfetti(count = 40) {
     const colors = ['#f44336', '#ff9800', '#ffeb3b', '#4caf50', '#2196f3', '#9c27b0'];
     this.confetti.set(
-      Array.from({ length: 40 }, () => ({
+      Array.from({ length: count }, () => ({
         x: (Math.random() - 0.5) * 400,
         y: -(80 + Math.random() * 120),
         rotation: Math.random() * 720 - 360,
