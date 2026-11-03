@@ -1,0 +1,40 @@
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>
+            {{ title() }}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="machine">
+            <div class="reels" aria-hidden="true">
+                @for (symbol of reels(); track $index) {
+                    <span class="reel" [class.spinning]="spinning()[$index]">{{ symbol }}</span>
+                }
+            </div>
+            @for (piece of confetti(); track $index) {
+                <span
+                    class="confetti"
+                    aria-hidden="true"
+                    [style.--x.px]="piece.x"
+                    [style.--y.px]="piece.y"
+                    [style.--rot.deg]="piece.rotation"
+                    [style.background]="piece.color"
+                    [style.animation-delay.ms]="piece.delay"
+                ></span>
+            }
+            <span class="label" aria-live="polite">
+                {{ message() }}
+                @if (!isSpinning()) {
+                    <span class="visually-hidden">{{ reels().join(' ') }}</span>
+                }
+            </span>
+        </div>
+        <button
+            matButton="outlined"
+            [disabled]="isSpinning()"
+            (click)="spin()"
+        >
+            Spin
+        </button>
+    </mat-card-content>
+</mat-card>

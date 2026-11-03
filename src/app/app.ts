@@ -6,7 +6,7 @@ import { MlyCrustSelection } from './mly-crust-selection/mly-crust-selection';
 import { EgaritaAddition } from './egarita-addition/egarita-addition';
 import { TsteeleAddition } from './tsteele-addition/tsteele-addition';
 import { SkandMultiplication } from './skand-multiplication/skand-multiplication';
-import { DiceRoller } from './dice-roller/dice-roller';
+import { SlotMachine } from './slot-machine/slot-machine';
 
 @Component({
   imports: [
@@ -17,7 +17,7 @@ import { DiceRoller } from './dice-roller/dice-roller';
     EgaritaAddition,
     TsteeleAddition,
     SkandMultiplication,
-    DiceRoller,
+    SlotMachine,
   ],
   selector: 'app-root',
   styleUrl: './app.css',
