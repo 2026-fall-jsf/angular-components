@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, input, linkedSignal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,9 +17,13 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class MlyMultiplication {
 
-  protected readonly numberOne = signal(100);
-  protected readonly numberTwo = signal(42);
-  protected readonly product = signal(4200);
+  readonly title = input('Multiplication Component');
+  readonly initialNumberOne = input(100);
+  readonly initialNumberTwo = input(42);
+
+  protected readonly numberOne = linkedSignal(() => this.initialNumberOne());
+  protected readonly numberTwo = linkedSignal(() => this.initialNumberTwo());
+  protected readonly product = linkedSignal(() => this.initialNumberOne() * this.initialNumberTwo());
 
   protected readonly updateNumberOne = (num: string) => this.numberOne.set(Number(num));
   protected readonly updateNumberTwo = (num: string) => this.numberTwo.set(Number(num));
