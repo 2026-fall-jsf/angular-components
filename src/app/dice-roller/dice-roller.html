@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ title() }}</mat-card-title>
+    <mat-card-subtitle>d{{ sides() }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="roller">
+    <button matButton="filled" [disabled]="rolling()" (click)="roll()">Roll</button>
+    <div class="result" [class.rolling]="rolling()" aria-hidden="true">{{ display() }}</div>
+    <div class="confetti" aria-hidden="true">
+      @for (p of confetti(); track p.id) {
+        <span
+          class="piece"
+          [style.background]="p.color"
+          [style.--x.px]="p.x"
+          [style.--y.px]="p.y"
+          [style.--r.deg]="p.rotate"
+          [style.animation-delay.ms]="p.delay"
+        ></span>
+      }
+    </div>
+    <span class="sr-only" aria-live="polite">
+      {{ result() === null ? 'Not rolled yet' : 'Rolled ' + result() }}
+    </span>
+  </mat-card-content>
+</mat-card>

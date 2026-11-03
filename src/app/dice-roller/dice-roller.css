@@ -1,0 +1,67 @@
+:host {
+  display: block;
+}
+
+mat-card {
+  overflow: hidden;
+}
+
+.roller {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1em;
+  font-size: 6rem;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.result.rolling {
+  animation: wobble 0.25s ease-in-out infinite;
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(-12deg) scale(1); }
+  50% { transform: rotate(12deg) scale(1.1); }
+}
+
+.confetti {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+}
+
+.piece {
+  position: absolute;
+  width: 8px;
+  height: 14px;
+  opacity: 0;
+  animation: burst 1.5s ease-out forwards;
+}
+
+@keyframes burst {
+  0% { opacity: 1; transform: translate(0, 0) rotate(0); }
+  60% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), calc(var(--y) + 220px)) rotate(var(--r));
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

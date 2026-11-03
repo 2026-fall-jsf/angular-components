@@ -6,6 +6,7 @@ import { MlyCrustSelection } from './mly-crust-selection/mly-crust-selection';
 import { EgaritaAddition } from './egarita-addition/egarita-addition';
 import { TsteeleAddition } from './tsteele-addition/tsteele-addition';
 import { JebashelMultiplication } from './jebashel-multiplication/jebashel-multiplication';
+import { DiceRoller } from './dice-roller/dice-roller';
 
 @Component({
   imports: [
@@ -16,6 +17,7 @@ import { JebashelMultiplication } from './jebashel-multiplication/jebashel-multi
     EgaritaAddition,
     TsteeleAddition,
     JebashelMultiplication,
+    DiceRoller,
   ],
   selector: 'app-root',
   styleUrl: './app.css',
