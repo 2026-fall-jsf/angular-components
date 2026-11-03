@@ -39,6 +39,8 @@ export class DiceRoller {
   protected readonly isD6 = computed(() => this.sides() === 6);
   protected readonly hasPip = (cell: number) => PIP_CELLS[this.shown()]?.includes(cell) ?? false;
 
+  protected readonly hue = signal(0);
+
   protected readonly confetti = signal<{ left: number; delay: number; drift: number; color: string }[]>([]);
 
   protected readonly buttonLabel = computed(() =>
@@ -59,6 +61,7 @@ export class DiceRoller {
       clearInterval(shuffle);
       this.result.set(this.randomRoll());
       this.rolling.set(false);
+      this.hue.set((this.hue() + 40 + Math.random() * 280) % 360);
       this.launchConfetti();
     }, ROLL_DURATION_MS);
   };
@@ -74,6 +77,7 @@ export class DiceRoller {
   };
 
 }
+
 
 
 
