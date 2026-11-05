@@ -8,6 +8,42 @@
         <br>
         <mat-form-field>
             <mat-label>
+                HP IV
+            </mat-label>
+            <input type="number" matInput [value]="hpIv()" (input)="updateHpIv($event.target.value)" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>
+                Attack IV
+            </mat-label>
+            <input type="number" matInput [value]="hpIv()" (input)="updateAttackIv($event.target.value)" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>
+                Defense IV
+            </mat-label>
+            <input type="number" matInput [value]="hpIv()" (input)="updateDefenseIv($event.target.value)" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>
+                Special Attack IV
+            </mat-label>
+            <input type="number" matInput [value]="hpIv()" (input)="updateSpecialAttackIv($event.target.value)" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>
+                Special Defense IV
+            </mat-label>
+            <input type="number" matInput [value]="hpIv()" (input)="updateSpecialDefenseIv($event.target.value)" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>
+                Speed IV
+            </mat-label>
+            <input type="number" matInput [value]="hpIv()" (input)="updateSpeedIv($event.target.value)" />
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>
                 IV
             </mat-label>
             <input type="number" matInput [value]="hpIv()" (input)="updateHpIv($event.target.value)" />

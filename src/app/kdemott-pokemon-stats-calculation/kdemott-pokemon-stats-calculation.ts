@@ -16,27 +16,27 @@ export class KdemottPokemonStatsCalculation {
 
     protected readonly baseHp = 45;
     protected readonly hpIv = signal(0);
-    protected readonly hpEv = signal(0);
+    protected readonly hpEv = 0;
 
     protected readonly baseAttack = 65;
     protected readonly attackIv = signal(0);
-    protected readonly attackEv = signal(0);
+    protected readonly attackEv = 0;
 
     protected readonly baseDefense = 40;
     protected readonly defenseIv = signal(0);
-    protected readonly defenseEv = signal(0);
+    protected readonly defenseEv = 0;
 
     protected readonly baseSpecialAttack = 60;
     protected readonly specialAttackIv = signal(0);
-    protected readonly specialAttackEv = signal(0);
+    protected readonly specialAttackEv = 0;
 
     protected readonly baseSpecialDefense = 40;
     protected readonly specialDefenseIv = signal(0);
-    protected readonly specialDefenseEv = signal(0);
+    protected readonly specialDefenseEv = 0;
 
     protected readonly baseSpeed = 70;
     protected readonly speedIv = signal(0);
-    protected readonly speedEv = signal(0);
+    protected readonly speedEv = 0;
 
     protected readonly level = signal(0);
 
@@ -57,35 +57,27 @@ export class KdemottPokemonStatsCalculation {
 
     // HP stat
     protected readonly updateHpIv = (num: string) => this.hpIv.set(Number(num));
-    protected readonly updateHpEv = (num: string) => this.hpEv.set(Number(num));
 
     protected readonly updateLevel = (num: string) => this.level.set(Number(num));
 
-    // protected readonly updateNature = (nature: string) => this.nature.set(Number(nature));
-
     // Attack stat
     protected readonly updateAttackIv = (num: string) => this.attackIv.set(Number(num));
-    protected readonly updateAttackEv = (num: string) => this.attackEv.set(Number(num));
 
     // Defense stat
     protected readonly updateDefenseIv = (num: string) => this.defenseIv.set(Number(num));
-    protected readonly updateDefenseEv = (num: string) => this.defenseEv.set(Number(num));
 
     // Special Attack stat
     protected readonly updateSpecialAttackIv = (num: string) => this.specialAttackIv.set(Number(num));
-    protected readonly updateSpecialAttackEv = (num: string) => this.specialAttackEv.set(Number(num));
 
     // Special Defense stat
     protected readonly updateSpecialDefenseIv = (num: string) => this.specialDefenseIv.set(Number(num));
-    protected readonly updateSpecialDefenseEv = (num: string) => this.specialDefenseEv.set(Number(num));
 
     // Speed stat
     protected readonly updateSpeedIv = (num: string) => this.speedIv.set(Number(num));
-    protected readonly updateSpeedEv = (num: string) => this.speedEv.set(Number(num));
 
     // HP stat calculation
     protected readonly calculateHpStat = () => {
-        this.quotient.set(Math.floor(this.hpEv() / 4));
+        this.quotient.set(Math.floor(this.hpEv / 4));
 
         this.productTwo.set(this.baseHp * 2);
 
@@ -104,9 +96,9 @@ export class KdemottPokemonStatsCalculation {
         this.finalHp.set(this.sumFive());
     }
 
-    // Attack stat
+    // Attack stat calculation
     protected readonly calculateAttackStat = () => {
-        this.quotient.set(Math.floor(this.hpEv() / 4));
+        this.quotient.set(Math.floor(this.attackEv / 4));
 
         this.product.set(this.baseAttack * 2);
 
@@ -125,9 +117,9 @@ export class KdemottPokemonStatsCalculation {
         this.finalStatOther.set(this.sumFour()); // Temporary
     }
 
-    // Defense stat
+    // Defense stat calculation
     protected readonly calculateDefenseStat = () => {
-        this.quotient.set(Math.floor(this.hpEv() / 4));
+        this.quotient.set(Math.floor(this.defenseEv / 4));
 
         this.product.set(this.baseDefense * 2);
 
@@ -146,9 +138,9 @@ export class KdemottPokemonStatsCalculation {
         this.finalStatOther.set(this.sumFour()); // Temporary
     }
 
-    // Special Attack stat
+    // Special Attack stat calculation
     protected readonly calculateSpecialAttack = () => {
-        this.quotient.set(Math.floor(this.hpEv() / 4));
+        this.quotient.set(Math.floor(this.specialAttackEv / 4));
 
         this.product.set(this.baseSpecialAttack * 2);
 
@@ -167,9 +159,9 @@ export class KdemottPokemonStatsCalculation {
         this.finalStatOther.set(this.sumFour()); // Temporary
     }
 
-    // Special Defense stat
+    // Special Defense stat calculation
     protected readonly calculateSpecialDefense = () => {
-        this.quotient.set(Math.floor(this.hpEv() / 4));
+        this.quotient.set(Math.floor(this.specialDefenseEv / 4));
 
         this.product.set(this.baseSpecialDefense * 2);
 
@@ -188,9 +180,9 @@ export class KdemottPokemonStatsCalculation {
         this.finalStatOther.set(this.sumFour()); // Temporary
     }
 
-    // Speed stat
+    // Speed stat calculation
     protected readonly calculateSpeed = () => {
-        this.quotient.set(Math.floor(this.hpEv() / 4));
+        this.quotient.set(Math.floor(this.speedEv / 4));
 
         this.product.set(this.baseSpeed * 2);
 
