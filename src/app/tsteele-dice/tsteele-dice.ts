@@ -27,7 +27,7 @@ interface ConfettiPiece {
   styleUrl: './tsteele-dice.css',
 })
 export class TsteeleDice {
-  readonly title = input("Tom's Dice Roller");
+  readonly title = input('Dice Roller');
   readonly sides = input(6);
 
   private readonly timers = new Set<ReturnType<typeof setTimeout>>();
