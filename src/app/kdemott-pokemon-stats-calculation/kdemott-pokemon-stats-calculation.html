@@ -10,43 +10,37 @@
             <mat-label>
                 HP IV
             </mat-label>
-            <input type="number" matInput [value]="hpIv()" (input)="updateHpIv($event.target.value)" />
+            <input type="number" min="0" max="31" matInput [value]="hpIv()" (input)="updateHpIv($event.target.value)" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>
                 Attack IV
             </mat-label>
-            <input type="number" matInput [value]="hpIv()" (input)="updateAttackIv($event.target.value)" />
+            <input type="number" min="0" max="31" matInput [value]="attackIv()" (input)="updateAttackIv($event.target.value)" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>
                 Defense IV
             </mat-label>
-            <input type="number" matInput [value]="hpIv()" (input)="updateDefenseIv($event.target.value)" />
+            <input type="number" min="0" max="31" matInput [value]="defenseIv()" (input)="updateDefenseIv($event.target.value)" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>
                 Special Attack IV
             </mat-label>
-            <input type="number" matInput [value]="hpIv()" (input)="updateSpecialAttackIv($event.target.value)" />
+            <input type="number" min="0" max="31" matInput [value]="specialAttackIv()" (input)="updateSpecialAttackIv($event.target.value)" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>
                 Special Defense IV
             </mat-label>
-            <input type="number" matInput [value]="hpIv()" (input)="updateSpecialDefenseIv($event.target.value)" />
+            <input type="number" min="0" max="31" matInput [value]="specialDefenseIv()" (input)="updateSpecialDefenseIv($event.target.value)" />
         </mat-form-field>
         <mat-form-field>
             <mat-label>
                 Speed IV
             </mat-label>
-            <input type="number" matInput [value]="hpIv()" (input)="updateSpeedIv($event.target.value)" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>
-                IV
-            </mat-label>
-            <input type="number" matInput [value]="hpIv()" (input)="updateHpIv($event.target.value)" />
+            <input type="number" min="0" max="31" matInput [value]="speedIv()" (input)="updateSpeedIv($event.target.value)" />
         </mat-form-field>
         &nbsp;
         <button matButton="outlined" (click)="calculateHpStat()">
@@ -54,6 +48,16 @@
         </button>
         &nbsp;
         {{ finalHp() }}
+        |
+        {{ finalStatAttack()}}
+        |
+        {{ finalStatDefense()}}
+        |
+        {{ finalStatSpecialAttack()}}
+        |
+        {{ finalStatSpecialDefense()}}
+        |
+        {{ finalStatSpeed()}}
     </mat-card-content>
 </mat-card>
 

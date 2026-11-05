@@ -53,7 +53,11 @@ export class KdemottPokemonStatsCalculation {
 
     protected readonly finalHp = signal(0);
 
-    protected readonly finalStatOther = signal(0);
+    protected readonly finalStatAttack = signal(0);
+    protected readonly finalStatDefense = signal(0);
+    protected readonly finalStatSpecialAttack = signal(0);
+    protected readonly finalStatSpecialDefense = signal(0);
+    protected readonly finalStatSpeed = signal(0);
 
     // HP stat
     protected readonly updateHpIv = (num: string) => this.hpIv.set(Number(num));
@@ -102,7 +106,7 @@ export class KdemottPokemonStatsCalculation {
 
         this.product.set(this.baseAttack * 2);
 
-        this.sum.set(this.productTwo() + this.hpIv());
+        this.sum.set(this.productTwo() + this.attackIv());
 
         this.sumTwo.set(this.sum() + this.quotient());
 
@@ -114,7 +118,7 @@ export class KdemottPokemonStatsCalculation {
 
         this.productThree.set(this.sumFour() * 1.1);
 
-        this.finalStatOther.set(this.sumFour()); // Temporary
+        this.finalStatAttack.set(this.sumFour()); // Temporary
     }
 
     // Defense stat calculation
@@ -123,7 +127,7 @@ export class KdemottPokemonStatsCalculation {
 
         this.product.set(this.baseDefense * 2);
 
-        this.sum.set(this.productTwo() + this.hpIv());
+        this.sum.set(this.productTwo() + this.defenseIv());
 
         this.sumTwo.set(this.sum() + this.quotient());
 
@@ -135,7 +139,7 @@ export class KdemottPokemonStatsCalculation {
 
         this.productThree.set(this.sumFour() * 0.9);
 
-        this.finalStatOther.set(this.sumFour()); // Temporary
+        this.finalStatDefense.set(this.sumFour()); // Temporary
     }
 
     // Special Attack stat calculation
@@ -144,7 +148,7 @@ export class KdemottPokemonStatsCalculation {
 
         this.product.set(this.baseSpecialAttack * 2);
 
-        this.sum.set(this.productTwo() + this.hpIv());
+        this.sum.set(this.productTwo() + this.specialAttackIv());
 
         this.sumTwo.set(this.sum() + this.quotient());
 
@@ -156,7 +160,7 @@ export class KdemottPokemonStatsCalculation {
 
         this.productThree.set(this.sumFour() * 1.0);
 
-        this.finalStatOther.set(this.sumFour()); // Temporary
+        this.finalStatSpecialAttack.set(this.sumFour()); // Temporary
     }
 
     // Special Defense stat calculation
@@ -165,7 +169,7 @@ export class KdemottPokemonStatsCalculation {
 
         this.product.set(this.baseSpecialDefense * 2);
 
-        this.sum.set(this.productTwo() + this.hpIv());
+        this.sum.set(this.productTwo() + this.specialDefenseIv());
 
         this.sumTwo.set(this.sum() + this.quotient());
 
@@ -177,7 +181,7 @@ export class KdemottPokemonStatsCalculation {
 
         this.productThree.set(this.sumFour() * 1.0);
 
-        this.finalStatOther.set(this.sumFour()); // Temporary
+        this.finalStatSpecialDefense.set(this.sumFour()); // Temporary
     }
 
     // Speed stat calculation
@@ -186,7 +190,7 @@ export class KdemottPokemonStatsCalculation {
 
         this.product.set(this.baseSpeed * 2);
 
-        this.sum.set(this.productTwo() + this.hpIv());
+        this.sum.set(this.productTwo() + this.speedIv());
 
         this.sumTwo.set(this.sum() + this.quotient());
 
@@ -198,7 +202,7 @@ export class KdemottPokemonStatsCalculation {
 
         this.productThree.set(this.sumFour() * 1.0);
 
-        this.finalStatOther.set(this.sumFour()); // Temporary
+        this.finalStatSpeed.set(this.sumFour()); // Temporary
     }
 
     // HP=⌊(2*Base+IV+⌊EV/4⌋)*Level/100⌋+Level+10
