@@ -6,9 +6,9 @@ const D6_FACES = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
 const CONFETTI_COLORS = ['#f44336', '#ff9800', '#ffeb3b', '#4caf50', '#2196f3', '#9c27b0'];
 
 // Animation tuning: ticks start fast and slow down until the delay passes the max.
-const START_DELAY_MS = 50;
-const DELAY_GROWTH = 1.18;
-const MAX_DELAY_MS = 450;
+const START_DELAY_MS = 80;
+const DELAY_GROWTH = 1.15;
+const MAX_DELAY_MS = 550;
 const CONFETTI_COUNT = 40;
 const CONFETTI_DURATION_MS = 2500;
 
@@ -85,7 +85,9 @@ export class TsteeleDice {
         this.result.set(final);
         this.shown.set(final);
         this.rolling.set(false);
-        this.celebrate();
+        if (final === 6) {
+          this.celebrate();
+        }
         return;
       }
       this.shown.set(this.randomFace());

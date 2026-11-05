@@ -35,19 +35,18 @@ mat-card {
   }
 }
 
+/* Total duration matches the face-change ticks in tsteele-dice.ts (~3.3s). */
 .die.rolling {
-  animation: tumble 0.25s linear infinite;
+  animation: spin-down 3.3s cubic-bezier(0.25, 0.6, 0.35, 1) forwards;
 }
 
-@keyframes tumble {
+/* Starts fast, then decelerates to a stop after 3 full turns. */
+@keyframes spin-down {
   from {
-    transform: rotate(-12deg) scale(1.05);
-  }
-  50% {
-    transform: rotate(12deg) scale(0.95);
+    transform: rotate(0deg);
   }
   to {
-    transform: rotate(-12deg) scale(1.05);
+    transform: rotate(1080deg);
   }
 }
 
@@ -75,4 +74,5 @@ mat-card {
   height: 6rem;
   font-size: 5rem;
   line-height: 1;
+  color: #1976d2;
 }
