@@ -40,17 +40,6 @@ export class KdemottPokemonStatsCalculation {
 
     protected readonly level = signal(0);
 
-    protected readonly sum = signal(0);
-    protected readonly product = signal(0);
-    protected readonly quotient = signal(0);
-    protected readonly productTwo = signal(0);
-    protected readonly sumTwo = signal(0);
-    protected readonly sumThree = signal(0);
-    protected readonly quotientTwo = signal(0);
-    protected readonly sumFour = signal(0);
-    protected readonly sumFive = signal(0);
-    protected readonly productThree = signal(0);
-
     protected readonly finalHp = signal(0);
 
     protected readonly finalStatAttack = signal(0);
@@ -79,130 +68,151 @@ export class KdemottPokemonStatsCalculation {
     // Speed stat
     protected readonly updateSpeedIv = (num: string) => this.speedIv.set(Number(num));
 
+    protected readonly updateFinalHp = (num: string) => this.finalHp.set(Number(num));
+
+    protected readonly updateFinalStatAttack = (num: string) => this.finalStatAttack.set(Number(num));
+    protected readonly updateFinalStatDefense = (num: string) => this.finalStatDefense.set(Number(num));
+    protected readonly updateFinalStatSpecialAttack = (num: string) => this.finalStatSpecialAttack.set(Number(num));
+    protected readonly updateFinalStatSpecialDefense = (num: string) => this.finalStatSpecialDefense.set(Number(num));
+    protected readonly updateFinalStatSpeed = (num: string) => this.finalStatSpeed.set(Number(num));
+
     // HP stat calculation
     protected readonly calculateHpStat = () => {
-        this.quotient.set(Math.floor(this.hpEv / 4));
+        const quotient = Math.floor(this.hpEv / 4);
 
-        this.productTwo.set(this.baseHp * 2);
+        const product = this.baseHp * 2;
 
-        this.sum.set(this.productTwo() + this.hpIv());
+        const sum = product + this.hpIv();
 
-        this.sumTwo.set(this.sum() + this.quotient());
+        const sumTwo = sum + quotient;
 
-        this.productTwo.set(this.sumTwo() * this.level());
+        const productThree = sumTwo * this.level();
 
-        this.quotientTwo.set(Math.floor(this.productTwo() / 100));
+        const quotientTwo = Math.floor(productThree / 100);
 
-        this.sumFour.set(this.quotientTwo() + this.level());
+        const sumFour = quotientTwo + this.level();
 
-        this.sumFive.set(this.sumFour() + 10);
+        const sumFive = sumFour + 10;
 
-        this.finalHp.set(this.sumFive());
+        this.finalHp.set(sumFive);
     }
+
+    // HP=⌊(2*Base+IV+⌊EV/4⌋)*Level/100⌋+Level+10
 
     // Attack stat calculation
     protected readonly calculateAttackStat = () => {
-        this.quotient.set(Math.floor(this.attackEv / 4));
+        const quotient = Math.floor(this.attackEv / 4);
 
-        this.product.set(this.baseAttack * 2);
+        const product = this.baseAttack * 2;
 
-        this.sum.set(this.productTwo() + this.attackIv());
+        const sum = product + this.attackIv();
 
-        this.sumTwo.set(this.sum() + this.quotient());
+        const sumTwo = sum + quotient;
 
-        this.productTwo.set(this.sumTwo() * this.level());
+        const productTwo = sumTwo * this.level();
 
-        this.quotientTwo.set(Math.floor(this.productTwo() / 100));
+        const quotientTwo = Math.floor(productTwo / 100);
 
-        this.sumFour.set(this.quotientTwo() + 5);
+        const sumThree = (quotientTwo + 5);
 
-        this.productThree.set(this.sumFour() * 1.1);
+        const productThree = (sumThree * 1.1);
 
-        this.finalStatAttack.set(this.sumFour()); // Temporary
+        this.finalStatAttack.set(Math.floor(productThree)); // Temporary
     }
+
+    // OtherStat=⌊(⌊(2*Base+IV+⌊EV/4⌋)*Level/100⌋+5)*Nature⌋
 
     // Defense stat calculation
-    protected readonly calculateDefenseStat = () => {
-        this.quotient.set(Math.floor(this.defenseEv / 4));
+    // protected readonly calculateDefenseStat = () => {
+    //     const quotient = (Math.floor(this.defenseEv / 4));
 
-        this.product.set(this.baseDefense * 2);
+    //     const product = (this.baseDefense * 2);
 
-        this.sum.set(this.productTwo() + this.defenseIv());
+    //     const sum = (this.productTwo() + this.defenseIv());
 
-        this.sumTwo.set(this.sum() + this.quotient());
+    //     const sumTwo = (this.sum() + this.quotient());
 
-        this.productTwo.set(this.sumTwo() * this.level());
+    //     const productTwo = (this.sumTwo() * this.level());
 
-        this.quotientTwo.set(Math.floor(this.productTwo() / 100));
+    //     const quotientTwo = (Math.floor(this.productTwo() / 100));
 
-        this.sumFour.set(this.quotientTwo() + 5);
+    //     const sumFour = (this.quotientTwo() + 5);
 
-        this.productThree.set(this.sumFour() * 0.9);
+    //     const productThree = (this.sumFour() * 0.9);
 
-        this.finalStatDefense.set(this.sumFour()); // Temporary
-    }
+    //     const finalStatDefense = (this.sumFive()); // Temporary
+    // }
 
-    // Special Attack stat calculation
-    protected readonly calculateSpecialAttack = () => {
-        this.quotient.set(Math.floor(this.specialAttackEv / 4));
+    // // Special Attack stat calculation
+    // protected readonly calculateSpecialAttack = () => {
+    //     const quotient = (Math.floor(this.specialAttackEv / 4));
 
-        this.product.set(this.baseSpecialAttack * 2);
+    //     const product = (this.baseSpecialAttack * 2);
 
-        this.sum.set(this.productTwo() + this.specialAttackIv());
+    //     const sum = (this.productTwo() + this.specialAttackIv());
 
-        this.sumTwo.set(this.sum() + this.quotient());
+    //     const sumTwo = (this.sum() + this.quotient());
 
-        this.productTwo.set(this.sumTwo() * this.level());
+    //     const productTwo = (this.sumTwo() * this.level());
 
-        this.quotientTwo.set(Math.floor(this.productTwo() / 100));
+    //     const quotientTwo = (Math.floor(this.productTwo() / 100));
 
-        this.sumFour.set(this.quotientTwo() + 5);
+    //     const sumFour = (this.quotientTwo() + 5);
 
-        this.productThree.set(this.sumFour() * 1.0);
+    //     const productThree = (this.sumFour() * 1.0);
 
-        this.finalStatSpecialAttack.set(this.sumFour()); // Temporary
-    }
+    //     const finalStatSpecialAttack = (this.sumFive()); // Temporary
+    // }
 
-    // Special Defense stat calculation
-    protected readonly calculateSpecialDefense = () => {
-        this.quotient.set(Math.floor(this.specialDefenseEv / 4));
+    // // Special Defense stat calculation
+    // protected readonly calculateSpecialDefense = () => {
+    //     const quotient = (Math.floor(this.specialDefenseEv / 4));
 
-        this.product.set(this.baseSpecialDefense * 2);
+    //     const product = (this.baseSpecialDefense * 2);
 
-        this.sum.set(this.productTwo() + this.specialDefenseIv());
+    //     const sum = (this.productTwo() + this.specialDefenseIv());
 
-        this.sumTwo.set(this.sum() + this.quotient());
+    //     const sumTwo = (this.sum() + this.quotient());
 
-        this.productTwo.set(this.sumTwo() * this.level());
+    //     const productTwo = (this.sumTwo() * this.level());
 
-        this.quotientTwo.set(Math.floor(this.productTwo() / 100));
+    //     const quotientTwo = (Math.floor(this.productTwo() / 100));
 
-        this.sumFour.set(this.quotientTwo() + 5);
+    //     const sumFour = (this.quotientTwo() + 5);
 
-        this.productThree.set(this.sumFour() * 1.0);
+    //     const productThree = (this.sumFour() * 1.0);
 
-        this.finalStatSpecialDefense.set(this.sumFour()); // Temporary
-    }
+    //     const finalStatSpecialDefense = (this.sumFive()); // Temporary
+    // }
 
-    // Speed stat calculation
-    protected readonly calculateSpeed = () => {
-        this.quotient.set(Math.floor(this.speedEv / 4));
+    // // Speed stat calculation
+    // protected readonly calculateSpeed = () => {
+    //     const quotient = (Math.floor(this.speedEv / 4));
 
-        this.product.set(this.baseSpeed * 2);
+    //     const product = (this.baseSpeed * 2);
 
-        this.sum.set(this.productTwo() + this.speedIv());
+    //     const sum = (this.productTwo() + this.speedIv());
 
-        this.sumTwo.set(this.sum() + this.quotient());
+    //     const sumTwo = (this.sum() + this.quotient());
 
-        this.productTwo.set(this.sumTwo() * this.level());
+    //     const productTwo = (this.sumTwo() * this.level());
 
-        this.quotientTwo.set(Math.floor(this.productTwo() / 100));
+    //     const quotientTwo = (Math.floor(this.productTwo() / 100));
 
-        this.sumFour.set(this.quotientTwo() + 5);
+    //     const sumFour = (this.quotientTwo() + 5);
 
-        this.productThree.set(this.sumFour() * 1.0);
+    //     const productThree = (this.sumFour() * 1.0);
 
-        this.finalStatSpeed.set(this.sumFour()); // Temporary
+    //     const finalStatSpeed = (this.sumFive()); // Temporary
+    // }
+
+    protected readonly calculateStats = () => {
+        this.calculateHpStat();
+        this.calculateAttackStat();
+        // this.calculateDefenseStat();
+        // this.calculateSpecialAttack();
+        // this.calculateSpecialDefense();
+        // this.calculateSpeed();
     }
 
     // HP=⌊(2*Base+IV+⌊EV/4⌋)*Level/100⌋+Level+10

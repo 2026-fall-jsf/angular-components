@@ -42,8 +42,14 @@
             </mat-label>
             <input type="number" min="0" max="31" matInput [value]="speedIv()" (input)="updateSpeedIv($event.target.value)" />
         </mat-form-field>
+        <mat-form-field>
+            <mat-label>
+                Level
+            </mat-label>
+            <input type="number" min="1" max="100" matInput [value]="level()" (input)="updateLevel($event.target.value)" />
+        </mat-form-field>
         &nbsp;
-        <button matButton="outlined" (click)="calculateHpStat()">
+        <button matButton="outlined" (click)="calculateStats()">
             =
         </button>
         &nbsp;
@@ -51,15 +57,12 @@
         |
         {{ finalStatAttack()}}
         |
-        {{ finalStatDefense()}}
+        <!-- {{ finalStatDefense()}}
         |
         {{ finalStatSpecialAttack()}}
         |
         {{ finalStatSpecialDefense()}}
-        |
+        | -->
         {{ finalStatSpeed()}}
     </mat-card-content>
 </mat-card>
-
-<!-- min="0"
-max="31" -->
