@@ -2,9 +2,10 @@ import { Component, signal } from "@angular/core";
 import { MatCard, MatCardHeader, MatCardTitle, MatCardContent } from "@angular/material/card";
 import { MatFormField, MatLabel } from "@angular/material/form-field";
 import { MatInput } from "@angular/material/input";
+import { MatButton } from "@angular/material/button";
 
 @Component({
-    imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatFormField, MatLabel, MatInput],
+    imports: [MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatFormField, MatLabel, MatInput, MatButton],
     selector: 'app-kdemott-pokemon-stats-calculation',
     styleUrl: './kdemott-pokemon-stats-calculation.css',
     templateUrl: './kdemott-pokemon-stats-calculation.html',
@@ -38,7 +39,7 @@ export class KdemottPokemonStatsCalculation {
     protected readonly speedIv = signal(0);
     protected readonly speedEv = 0;
 
-    protected readonly level = signal(0);
+    protected readonly level = signal(1);
 
     protected readonly finalHp = signal(0);
 
@@ -48,25 +49,26 @@ export class KdemottPokemonStatsCalculation {
     protected readonly finalStatSpecialDefense = signal(0);
     protected readonly finalStatSpeed = signal(0);
 
-    // HP stat
-    protected readonly updateHpIv = (num: string) => this.hpIv.set(Number(num));
+    // Level
+    protected readonly updateLevel = (num: string) => this.level.set(Math.max(1, Math.min(100, Number(num))));
 
-    protected readonly updateLevel = (num: string) => this.level.set(Number(num));
+    // HP stat
+    protected readonly updateHpIv = (num: string) => this.hpIv.set(Math.max(0, Math.min(31, Number(num))));
 
     // Attack stat
-    protected readonly updateAttackIv = (num: string) => this.attackIv.set(Number(num));
+    protected readonly updateAttackIv = (num: string) => this.attackIv.set(Math.max(0, Math.min(31, Number(num))));
 
     // Defense stat
-    protected readonly updateDefenseIv = (num: string) => this.defenseIv.set(Number(num));
+    protected readonly updateDefenseIv = (num: string) => this.defenseIv.set(Math.max(0, Math.min(31, Number(num))));
 
     // Special Attack stat
-    protected readonly updateSpecialAttackIv = (num: string) => this.specialAttackIv.set(Number(num));
+    protected readonly updateSpecialAttackIv = (num: string) => this.specialAttackIv.set(Math.max(0, Math.min(31, Number(num))));
 
     // Special Defense stat
-    protected readonly updateSpecialDefenseIv = (num: string) => this.specialDefenseIv.set(Number(num));
+    protected readonly updateSpecialDefenseIv = (num: string) => this.specialDefenseIv.set(Math.max(0, Math.min(31, Number(num))));
 
     // Speed stat
-    protected readonly updateSpeedIv = (num: string) => this.speedIv.set(Number(num));
+    protected readonly updateSpeedIv = (num: string) => this.speedIv.set(Math.max(0, Math.min(31, Number(num))));
 
     protected readonly updateFinalHp = (num: string) => this.finalHp.set(Number(num));
 
@@ -113,106 +115,107 @@ export class KdemottPokemonStatsCalculation {
 
         const quotientTwo = Math.floor(productTwo / 100);
 
-        const sumThree = (quotientTwo + 5);
+        const sumThree = quotientTwo + 5;
 
-        const productThree = (sumThree * 1.1);
+        const productThree = sumThree * 1.1;
 
         this.finalStatAttack.set(Math.floor(productThree)); // Temporary
     }
 
-    // OtherStat=⌊(⌊(2*Base+IV+⌊EV/4⌋)*Level/100⌋+5)*Nature⌋
-
     // Defense stat calculation
-    // protected readonly calculateDefenseStat = () => {
-    //     const quotient = (Math.floor(this.defenseEv / 4));
+    protected readonly calculateDefenseStat = () => {
+        const quotient = Math.floor(this.defenseEv / 4);
 
-    //     const product = (this.baseDefense * 2);
+        const product = this.baseDefense * 2;
 
-    //     const sum = (this.productTwo() + this.defenseIv());
+        const sum = product + this.defenseIv();
 
-    //     const sumTwo = (this.sum() + this.quotient());
+        const sumTwo = sum + quotient;
 
-    //     const productTwo = (this.sumTwo() * this.level());
+        const productTwo = sumTwo * this.level();
 
-    //     const quotientTwo = (Math.floor(this.productTwo() / 100));
+        const quotientTwo = Math.floor(productTwo / 100);
 
-    //     const sumFour = (this.quotientTwo() + 5);
+        const sumThree = quotientTwo + 5;
 
-    //     const productThree = (this.sumFour() * 0.9);
+        const productThree = sumThree * 0.9;
 
-    //     const finalStatDefense = (this.sumFive()); // Temporary
-    // }
+        this.finalStatDefense.set(Math.floor(productThree)); // Temporary
+    }
+
 
     // // Special Attack stat calculation
-    // protected readonly calculateSpecialAttack = () => {
-    //     const quotient = (Math.floor(this.specialAttackEv / 4));
+    protected readonly calculateSpecialAttack = () => {
+        const quotient = Math.floor(this.specialAttackEv / 4);
 
-    //     const product = (this.baseSpecialAttack * 2);
+        const product = this.baseSpecialAttack * 2;
 
-    //     const sum = (this.productTwo() + this.specialAttackIv());
+        const sum = product + this.specialAttackIv();
 
-    //     const sumTwo = (this.sum() + this.quotient());
+        const sumTwo = sum + quotient;
 
-    //     const productTwo = (this.sumTwo() * this.level());
+        const productTwo = sumTwo * this.level();
 
-    //     const quotientTwo = (Math.floor(this.productTwo() / 100));
+        const quotientTwo = (Math.floor(productTwo / 100));
 
-    //     const sumFour = (this.quotientTwo() + 5);
+        const sumFour = quotientTwo + 5;
 
-    //     const productThree = (this.sumFour() * 1.0);
+        const productThree = sumFour * 1.0;
 
-    //     const finalStatSpecialAttack = (this.sumFive()); // Temporary
-    // }
+        this.finalStatSpecialAttack.set(Math.floor(productThree)); // Temporary
+    }
+
+    // OtherStat=⌊(⌊(2*Base+IV+⌊EV/4⌋)*Level/100⌋+5)*Nature⌋
 
     // // Special Defense stat calculation
-    // protected readonly calculateSpecialDefense = () => {
-    //     const quotient = (Math.floor(this.specialDefenseEv / 4));
+    protected readonly calculateSpecialDefense = () => {
+        const quotient = (Math.floor(this.specialDefenseEv / 4));
 
-    //     const product = (this.baseSpecialDefense * 2);
+        const product = (this.baseSpecialDefense * 2);
 
-    //     const sum = (this.productTwo() + this.specialDefenseIv());
+        const sum = product + this.specialDefenseIv();
 
-    //     const sumTwo = (this.sum() + this.quotient());
+        const sumTwo = sum + quotient;
 
-    //     const productTwo = (this.sumTwo() * this.level());
+        const productTwo = sumTwo * this.level();
 
-    //     const quotientTwo = (Math.floor(this.productTwo() / 100));
+        const quotientTwo = (Math.floor(productTwo / 100));
 
-    //     const sumFour = (this.quotientTwo() + 5);
+        const sumFour = quotientTwo + 5;
 
-    //     const productThree = (this.sumFour() * 1.0);
+        const productThree = sumFour * 1.0;
 
-    //     const finalStatSpecialDefense = (this.sumFive()); // Temporary
-    // }
+        this.finalStatSpecialDefense.set(Math.floor(productThree)); // Temporary
+    }
 
     // // Speed stat calculation
-    // protected readonly calculateSpeed = () => {
-    //     const quotient = (Math.floor(this.speedEv / 4));
+    protected readonly calculateSpeed = () => {
+        const quotient = (Math.floor(this.speedEv / 4));
 
-    //     const product = (this.baseSpeed * 2);
+        const product = this.baseSpeed * 2;
 
-    //     const sum = (this.productTwo() + this.speedIv());
+        const sum = product + this.speedIv();
 
-    //     const sumTwo = (this.sum() + this.quotient());
+        const sumTwo = sum + quotient;
 
-    //     const productTwo = (this.sumTwo() * this.level());
+        const productTwo = sumTwo * this.level();
 
-    //     const quotientTwo = (Math.floor(this.productTwo() / 100));
+        const quotientTwo = (Math.floor(productTwo / 100));
 
-    //     const sumFour = (this.quotientTwo() + 5);
+        const sumFour = quotientTwo + 5;
 
-    //     const productThree = (this.sumFour() * 1.0);
+        const productThree = sumFour * 1.0;
 
-    //     const finalStatSpeed = (this.sumFive()); // Temporary
-    // }
+        this.finalStatSpeed.set(Math.floor(productThree)); // Temporary
+    }
 
     protected readonly calculateStats = () => {
         this.calculateHpStat();
         this.calculateAttackStat();
-        // this.calculateDefenseStat();
-        // this.calculateSpecialAttack();
-        // this.calculateSpecialDefense();
-        // this.calculateSpeed();
+        this.calculateDefenseStat();
+        this.calculateSpecialAttack();
+        this.calculateSpecialDefense();
+        this.calculateSpeed();
     }
 
     // HP=⌊(2*Base+IV+⌊EV/4⌋)*Level/100⌋+Level+10

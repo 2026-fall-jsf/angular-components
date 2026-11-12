@@ -1,68 +1,91 @@
 <mat-card appearance="outlined">
     <mat-card-header>
         <mat-card-title>
-            Pok&eacute;mon Stats Calculation
+            Pok&eacute;mon Stats Calculation (Litten with Lonely nature)
         </mat-card-title>
     </mat-card-header>
+
     <mat-card-content>
-        <br>
-        <mat-form-field>
-            <mat-label>
-                HP IV
-            </mat-label>
-            <input type="number" min="0" max="31" matInput [value]="hpIv()" (input)="updateHpIv($event.target.value)" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>
-                Attack IV
-            </mat-label>
-            <input type="number" min="0" max="31" matInput [value]="attackIv()" (input)="updateAttackIv($event.target.value)" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>
-                Defense IV
-            </mat-label>
-            <input type="number" min="0" max="31" matInput [value]="defenseIv()" (input)="updateDefenseIv($event.target.value)" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>
-                Special Attack IV
-            </mat-label>
-            <input type="number" min="0" max="31" matInput [value]="specialAttackIv()" (input)="updateSpecialAttackIv($event.target.value)" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>
-                Special Defense IV
-            </mat-label>
-            <input type="number" min="0" max="31" matInput [value]="specialDefenseIv()" (input)="updateSpecialDefenseIv($event.target.value)" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>
-                Speed IV
-            </mat-label>
-            <input type="number" min="0" max="31" matInput [value]="speedIv()" (input)="updateSpeedIv($event.target.value)" />
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>
-                Level
-            </mat-label>
-            <input type="number" min="1" max="100" matInput [value]="level()" (input)="updateLevel($event.target.value)" />
-        </mat-form-field>
-        &nbsp;
-        <button matButton="outlined" (click)="calculateStats()">
-            =
-        </button>
-        &nbsp;
-        {{ finalHp() }}
-        |
-        {{ finalStatAttack()}}
-        |
-        <!-- {{ finalStatDefense()}}
-        |
-        {{ finalStatSpecialAttack()}}
-        |
-        {{ finalStatSpecialDefense()}}
-        | -->
-        {{ finalStatSpeed()}}
+        <div class="leftSection">
+            <mat-form-field>
+                <mat-label>
+                    Level
+                </mat-label>
+                <input type="text" min="1" max="100" maxlength="3" inputmode="numeric" matInput [value]="level()"
+                    (input)="updateLevel($event.target.value)"/>
+            </mat-form-field>
+
+            <div class="ivStatsInputHeader">
+                Input IVs of your Litten
+            </div>
+
+            <div class="ivStatInputs">
+                <mat-form-field>
+                    <mat-label>
+                        HP IV
+                    </mat-label>
+                    <input type="text" maxlength="2" inputmode="numeric" matInput [value]="hpIv()" (input)="updateHpIv($event.target.value)"/>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>
+                        Attack IV
+                    </mat-label>
+                    <input type="text" maxlength="2" inputmode="numeric" matInput [value]="attackIv()"
+                        (input)="updateAttackIv($event.target.value)"/>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>
+                        Defense IV
+                    </mat-label>
+                    <input type="text" maxlength="2" inputmode="numeric" matInput [value]="defenseIv()"
+                        (input)="updateDefenseIv($event.target.value)"/>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>
+                        Special Attack IV
+                    </mat-label>
+                    <input type="text" maxlength="2" inputmode="numeric" matInput [value]="specialAttackIv()"
+                        (input)="updateSpecialAttackIv($event.target.value)"/>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>
+                        Special Defense IV
+                    </mat-label>
+                    <input type="text" maxlength="2" inputmode="numeric" matInput [value]="specialDefenseIv()"
+                        (input)="updateSpecialDefenseIv($event.target.value)"/>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>
+                        Speed IV
+                    </mat-label>
+                    <input type="text" maxlength="2" inputmode="numeric" matInput [value]="speedIv()"
+                        (input)="updateSpeedIv($event.target.value)"/>
+                </mat-form-field>
+            </div>
+            &nbsp;
+            <button matButton="outlined" (click)="calculateStats()">
+                Calculate Stats
+            </button>
+        </div>
+
+        <div class="calculatedStatsTotal">
+            &nbsp;
+            {{ finalHp() }}
+            |
+            {{ finalStatAttack()}}
+            |
+            {{ finalStatDefense()}}
+            |
+            {{ finalStatSpecialAttack()}}
+            |
+            {{ finalStatSpecialDefense()}}
+            |
+            {{ finalStatSpeed()}}
+        </div>
     </mat-card-content>
 </mat-card>
