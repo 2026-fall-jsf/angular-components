@@ -1,13 +1,15 @@
 <mat-card appearance="outlined">
     <mat-card-header>
         <mat-card-title>
-            Pok&eacute;mon Stats Calculation (Litten with Lonely nature)
+            Pok&eacute;mon Stats Calculation
+            <br>
+            for Litten with a Lonely nature
         </mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
         <div class="leftSection">
-            <mat-form-field>
+            <mat-form-field class="level">
                 <mat-label>
                     Level
                 </mat-label>
@@ -16,7 +18,7 @@
             </mat-form-field>
 
             <div class="ivStatsInputHeader">
-                Input IVs of your Litten
+                Input IVs for your Litten
             </div>
 
             <div class="ivStatInputs">
@@ -74,18 +76,17 @@
         </div>
 
         <div class="calculatedStatsTotal">
-            &nbsp;
-            {{ finalHp() }}
-            |
-            {{ finalStatAttack()}}
-            |
-            {{ finalStatDefense()}}
-            |
-            {{ finalStatSpecialAttack()}}
-            |
-            {{ finalStatSpecialDefense()}}
-            |
-            {{ finalStatSpeed()}}
+            <div id="hp">HP: {{ finalHp() }}</div>
+            <br>
+            <div id="attack">Attack: {{ finalStatAttack()}}</div>
+            <br>
+            <div id="defense">Defense: {{ finalStatDefense()}}</div>
+            <br>
+            <div id="specialAttack">Special Attack: {{ finalStatSpecialAttack()}}</div>
+            <br>
+            <div id="specialDefense">Special Defense: {{ finalStatSpecialDefense()}}</div>
+            <br>
+            <div id="speed">Speed: {{ finalStatSpeed()}}</div>
         </div>
     </mat-card-content>
 </mat-card>
