@@ -1,0 +1,11 @@
+mat-card {
+    margin-top: 2em;
+}
+
+mat-card-header {
+    margin-bottom: 2em;
+}
+
+mat-radio-button {
+    display: block;
+}
