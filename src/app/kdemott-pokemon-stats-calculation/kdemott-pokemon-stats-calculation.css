@@ -1,0 +1,48 @@
+mat-card-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+mat-card-title {
+  font-size: 185%;
+  padding-bottom: 20px;
+  margin-top: 10px;
+}
+
+.leftSection {
+  display: grid;
+  grid-template-rows: 1fr 0.5fr 3fr;
+}
+
+.ivStatsInputHeader {
+  align-self: last baseline;
+  margin: 5px 0;
+  padding: 10px 0;
+  font-size: 130%;
+}
+
+.ivStatInputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.level {
+  display: grid;
+  grid-template-columns: 0.5fr;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+}
+
+.calculatedStatsTotal {
+  justify-content: center;
+  margin: 70px;
+  align-self: end;
+  padding-bottom: 75px;
+  padding-left: 50px;
+}
+
+#hp, #attack, #defense, #specialAttack, #specialDefense, #speed {
+  font-size: 200%;
+}
