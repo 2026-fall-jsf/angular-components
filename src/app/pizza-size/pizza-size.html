@@ -1,0 +1,30 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>Choose Your Pizza Size</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>Select a size for your pizza.</p>
+
+    <div class="size-buttons">
+      @for (size of availableSizes; track size.name) {
+        <button
+          mat-stroked-button
+          type="button"
+          [class.selected]="selectedSize().name === size.name"
+          [attr.aria-pressed]="selectedSize().name === size.name"
+          (click)="selectSize(size)"
+        >
+          {{ size.name }} — {{ size.price | currency }}
+        </button>
+      }
+    </div>
+
+    <div aria-live="polite">
+      <p>Selected size: {{ selectedSize().name }}</p>
+      <p class="price">
+        Base price: {{ selectedSize().price | currency }}
+      </p>
+    </div>
+  </mat-card-content>
+</mat-card>
