@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  margin-top: 16px;
+}
+
+mat-card {
+  padding: 8px;
+}
+
+.size-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.selected {
+  background-color: #e8def8;
+  color: #381e72;
+  border: 2px solid #6750a4;
+}
+
+.price {
+  font-weight: bold;
+}

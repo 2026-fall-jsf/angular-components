@@ -7,6 +7,7 @@ import { EgaritaAddition } from './egarita-addition/egarita-addition';
 import { TsteeleAddition } from './tsteele-addition/tsteele-addition';
 import { KdemottPokemonStatsCalculation } from './kdemott-pokemon-stats-calculation/kdemott-pokemon-stats-calculation';
 import { JebashelTax } from './jebashel-tax/jebashel-tax';
+import { PizzaSize } from './pizza-size/pizza-size';
 
 @Component({
   imports: [
@@ -18,6 +19,7 @@ import { JebashelTax } from './jebashel-tax/jebashel-tax';
     TsteeleAddition,
     KdemottPokemonStatsCalculation,
     JebashelTax,
+    PizzaSize,
 ],
   selector: 'app-root',
   styleUrl: './app.css',
